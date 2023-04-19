@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Online Store</title>
+    <!-- Add Bootstrap CSS stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename= 'css/style.css') }}/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Online Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Clothing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Computer Components</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Monitors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Snacks</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Welcome to our Online Store!</h1>
+    <hr>
+
+    <div class="row">
+
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="price-box-header">
+                        <h3>Special Offer</h3>
+                    </div>
+                    <img class="card-img-top" src="https://via.placeholder.com/200x150.png?text=Product+Image"
+                         alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Chocolate</h5>
+                        <p class="card-text">Best of them all</p>
+
+                        <div class="price-box-body">
+                            <div class="price-box-price">
+                                <h4>Only $49.99</h4>
+                                <p>Regular price $79.99</p>
+                            </div>
+                        </div>
+                        <div class="price-box-footer">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<!-- Add Bootstrap JS script and jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    // Add a click event listener to the Buy Now button
+    const buyButton = document.querySelector('.price-box-footer button');
+    buyButton.addEventListener('click', () => {
+        alert('Thank you for your purchase!');
+    });
+</script>

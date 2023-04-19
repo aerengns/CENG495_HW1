@@ -1,0 +1,50 @@
+.price-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.price-box-header {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.price-box-price {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.price-box-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.price-box-features li {
+    padding: 5px 0;
+}
+
+.price-box-footer {
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #f0ad4e;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ec971f;
+}
