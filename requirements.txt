@@ -1,3 +1,5 @@
-Flask
-pymongo[srv]
+Flask~=2.2.3
+pymongo[srv]~=4.3.3
 Flask-PyMongo
+WTForms~=3.0.1
+python-dotenv~=1.0.0

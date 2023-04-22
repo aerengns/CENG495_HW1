@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <section class="section">
+    <div class="container">
+
+      <div class="columns is-centered">
+        <div class="column is-6">
+
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Profile
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+
+                <div class="field">
+                  <label class="label">Username:</label>
+                  <div class="control">
+                    <input class="input" type="text" value="{{ user.username }}" readonly>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Average Rating:</label>
+                  <div class="control">
+                    <input class="input" type="text" value="{{ user.get_avg_rating() }}" readonly>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Reviews:</label>
+                  <div class="control">
+                    {% if user.get_reviews() %}
+                      {% for review in user.get_reviews() %}
+                        <div class="box">
+                          <article class="media">
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                  <strong>{{ review.get_creator().username }} - {{ review.get_item().name }}</strong>
+                                  <br>
+                                  {{ review.text }}
+                                </p>
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p>No reviews yet.</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .card {
+      margin-top: 3rem;
+        background-color: #0f74bb;
+    }
+
+    .card-header-title {
+      font-size: 2rem;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #363636;
+    }
+
+    .input {
+      font-size: 1.2rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      border: none;
+      background-color: #209cee;
+      color: #363636;
+    }
+
+    .box {
+      margin-top: 1rem;
+      border-radius: 0.25rem;
+      background-color: #209cee;
+    }
+
+    .media-content {
+      margin-left: 1rem;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+      color: #363636;
+    }
+  </style>
+
+{% endblock %}

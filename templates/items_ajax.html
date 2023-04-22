@@ -1,0 +1,68 @@
+<style>
+    .review {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .review:last-child {
+        border-bottom: none;
+    }
+
+    .rating {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .review_text {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .creator {
+        font-size: 12px;
+        color: #666;
+    }
+</style>
+{% for item in items %}
+    <div class="column is-3">
+        <div class="card" style="background-color: #2a2c2c;">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    <img src="{{ item.image }}" alt="{{ item.name }}">
+                </figure>
+            </div>
+            <div class="card-content">
+                <p class="title is-2">{{ item.name }}</p>
+                <p class="subtitle is-3">{{ item.get_seller() }}</p>
+                <div class="content">
+                    <p>{{ item.description }}</p>
+                    {% if item.item_type == "Monitor" or item.item_type == "ComputerComponent" %}
+                        <p>Spec: {{ item.spec }}</p>
+                    {% elif item.item_type == 'Clothing' %}
+                        <p>Color: {{ item.color }}</p>
+                        <p>Size: {{ item.size }}</p>
+                    {% endif %}
+                    <p>Price: {{ item.price }}₺</p>
+                    <p>Rating: {{ item.get_rating() }}/5 (#{{ item.get_review_count() }} reviews)</p>
+                    <p>Created at: {{ item.created_at.strftime('%H:%M%:%S, %d-%m-%Y') }}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="content">
+                    <p class="title is-2">Reviews</p>
+                    {% for review in item.get_reviews() %}
+                        <div class="review">
+                            <p class="rating">{{ review.rating }}/5</p>
+                            <p class="review_text">{{ review.text }}</p>
+                            <p class="creator">{{ review.get_creator().username }}
+                                - {{ review.created_at.strftime('%H:%M%:%S, %d-%m-%Y') }}</p>
+                        </div>
+                    {% endfor %}
+                    {% if current_user.is_authenticated %}
+                        {% include 'add_review.html' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

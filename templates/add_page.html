@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Add or Remove Items</h1>
+            <form method="post" action="/add_item">
+                <div class="field">
+                    <label class="label" for="item_type">Item type:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="item_type" id="item_type">
+                                <option value="Clothing">Clothing</option>
+                                <option value="ComputerComponent">Computer Component</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="name">Name:</label>
+                    <div class="control">
+                        <input class="input" type="text" name="name" id="name" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="description">Description:</label>
+                    <div class="control">
+                        <textarea class="textarea" name="description" id="description" required></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="price">Price:</label>
+                    <div class="control">
+                        <input class="input" type="number" name="price" id="price" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="image">Image Link:</label>
+                    <div class="control">
+                        <input class="input" type="text" name="image" id="image">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="color">Color (if applicable):</label>
+                    <div class="control">
+                        <input class="input" type="text" name="color" id="color">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="size">Size (if applicable):</label>
+                    <div class="control">
+                        <input class="input" type="text" name="size" id="size">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="spec">Spec (if applicable):</label>
+                    <div class="control">
+                        <input class="input" type="text" name="spec" id="spec">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Add item</button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <form method="post" action="/remove_item">
+                <div class="field">
+                    <h2 class="subtitle">Remove an item</h2>
+                    <label class="label" for="item_id">Select Item:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="item_id" id="item_id">
+                                <option value="">Select item to remove</option>
+                                {% for item in items %}
+                                    <option value="{{ item._id }}">{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-danger" type="submit">Remove Item</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-text" type="reset">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

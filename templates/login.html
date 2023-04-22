@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="column">
+        <h3 class="title">Login</h3>
+        <div class="box">
+            <form method="POST" action="{{ request.path }}">
+                {{ form.csrf_token }}
+
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        {{ form.username(class_="input", placeholder="Enter your username") }}
+                    </div>
+                    {% for error in form.username.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        {{ form.pwd(class_="input", placeholder="Enter your password") }}
+                    </div>
+                    {% for error in form.pwd.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="field">
+                    <label class="checkbox">
+                        {{ form.remember(class_="checkbox") }}
+                        Remember me
+                    </label>
+                </div>
+
+                <div class="field">
+                    <button class="button is-success is-fullwidth">Login</button>
+                </div>
+
+                <div class="field">
+                    <a href="{{ url_for('signup') }}" class="button is-info is-outlined is-fullwidth">Create an account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

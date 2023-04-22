@@ -1,0 +1,47 @@
+<style>
+    .add-review-form {
+        margin-top: 20px;
+        background-color: #209cee;
+        padding: 20px;
+    }
+
+    .add-review-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .add-review-form .field {
+        margin-bottom: 10px;
+    }
+
+    .add-review-form .control {
+        margin-bottom: 10px;
+    }
+
+    .add-review-form .button {
+        margin-top: 10px;
+    }
+</style>
+<div class="add-review-form">
+    <h4 class="title is-4">Add or Update your Review</h4>
+    <form action="{{ url_for('add_review', item_id=item._id) }}" method="POST">
+        {{ review_form.csrf_token }}
+        <div class="field">
+            <label class="label">Rating</label>
+            <div class="control">
+                {{ review_form.rating(class_="input", placeholder="Rate between 1-5") }}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Review Text</label>
+             <div class="control">
+                {{ review_form.text(class_="input", placeholder="Your review") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">Submit Review</button>
+            </div>
+        </div>
+    </form>
+</div>

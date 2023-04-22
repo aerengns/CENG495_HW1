@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="column">
+        {% if current_user.is_admin %}
+            <h3 class="title">Create User</h3>
+        {% else %}
+            <h3 class="title">Sign Up</h3>
+        {% endif %}
+        <div class="box">
+            <form method="POST" action="{{ url_for('signup') }}">
+                {{ form.csrf_token }}
+
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        {{ form.username(class_="input", placeholder="Enter your username") }}
+                    </div>
+                    {% for error in form.username.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        {{ form.pwd(class_="input", placeholder="Enter your password") }}
+                    </div>
+                    {% for error in form.pwd.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="field">
+                    <label class="label">Confirm Password</label>
+                    <div class="control">
+                        {{ form.cpwd(class_="input", placeholder="Confirm your password") }}
+                    </div>
+                    {% for error in form.cpwd.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="field">
+                    <label class="checkbox">
+                        {{ form.is_admin(class_="checkbox") }}
+                        Is Admin?
+                    </label>
+                </div>
+
+                {% if not current_user.is_admin %}
+                    <div class="field">
+                        <button class="button is-success is-fullwidth">Sign Up</button>
+                    </div>
+
+                    <div class="field">
+                        <a href="{{ url_for('login') }}" class="button is-info is-outlined is-fullwidth">Already have an
+                            account?</a>
+                    </div>
+                {% else %}
+                    <div class="field">
+                        <button class="button is-success is-fullwidth">Create User</button>
+                    </div>
+                {% endif %}
+            </form>
+            {% if current_user.is_admin %}
+                <form method="post" action="/remove_user">
+                    <div class="field">
+                        <h2 class="subtitle">Remove an User</h2>
+                        <label class="label" for="item_id">Select User:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="user_id" id="user_id">
+                                    <option value="">Select user to remove</option>
+                                    {% for user in users %}
+                                        <option value="{{ user.id }}">{{ user.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-danger is-fullwidth" type="submit">Remove User</button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

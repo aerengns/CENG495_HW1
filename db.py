@@ -1,25 +1,13 @@
-import bson
+from flask_pymongo import pymongo
+from pymongo.collection import Collection
+from dotenv import load_dotenv
+import os
 
-from flask import current_app, g
-from werkzeug.local import LocalProxy
-from flask_pymongo import PyMongo
+load_dotenv()
+connection_string = os.getenv('CONNECTION_STRING')
+client = pymongo.MongoClient(connection_string)
+db = client.get_database('myDB')
 
-from pymongo.errors import DuplicateKeyError, OperationFailure
-from bson.objectid import ObjectId
-from bson.errors import InvalidId
-
-
-def get_db():
-    """
-    Configuration method to return db instance
-    """
-    db = getattr(g, "_database", None)
-
-    if db is None:
-        db = g._database = PyMongo(current_app).db
-
-    return db
-
-
-# Use LocalProxy to read the global db instance with just `db`
-db = LocalProxy(get_db)
+users_collection = db['users']
+items_collection = db['items']
+reviews_collection = db['reviews']
