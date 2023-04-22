@@ -1,12 +1,12 @@
 from bson import ObjectId
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for
 from flask import session
 from flask_login import login_user, login_required, logout_user
 
 import db
 from app import app, bcrypt
 from forms import LoginForm, SignUpForm, ReviewForm
-from models import ITEM_TYPES, User, Item, Review
+from models import ITEM_TYPES, User, Review
 
 
 def get_current_user():
